@@ -47,6 +47,7 @@ public class Plant extends CollisionObject{
 	public Plant(){
 		super(startX,startY, 100,100);
 		try {
+			/*
 			loadImage("plant.png");
 			Image[] frames = new Image[4];
 			frames[0]= new Image("plant1.png");
@@ -60,11 +61,26 @@ public class Plant extends CollisionObject{
 			frames2[3]= new Image("plant6.png");
 			frames2[4]=frames[2];
 			frames2[5]=frames2[1];
+			*/
+			loadImage("nplant1.png");
+			Image[] frames = new Image[3];
+			frames[0]= new Image("nplant1.png");
+			frames[1]= new Image("nplant2.png");
+			frames[2]= new Image("nplant1.png");
 
+			// 2 3 4 3 2
+			Image[] frames2 = new Image[6];
+			frames2[0] = frames[1];
+			frames2[1] = new Image("nplant2.png");
+			frames2[2] = new Image("nplant3.png");
+			frames2[3]= new Image("nplant4.png");
+			frames2[4]=frames[2];
+			frames2[5]=frames2[1];
+			
 			vineframes[0] = new Image("vine1.png");
 			vineframes[1] = new Image("vine2.png");
 			vineframes[2] = new Image("vine3.png");
-			ani = new Animation(frames, 150);
+			ani = new Animation(frames, 200);
 			eat = new Animation(frames2, 50);
 			vine = new Animation(vineframes, 200);
 
@@ -108,11 +124,11 @@ public class Plant extends CollisionObject{
 	public void render(Graphics g){
 		//g.draw(shape);
 		drawLeaves(g);
-		renderVine(g);
+		//renderVine(g);
 		g.drawLine(GameRunner.WIDTH/2, GameRunner.HEIGHT, coords[0], coords[1]);
 		//g.drawImage(img, rectSrcCoordX, rectSrcCoordY);
-		g.drawImage(vineframes[0], GameRunner.WIDTH/2, GameRunner.HEIGHT, coords[0]-vineframes[0].getWidth()/2, coords[1], 0, 0, vineframes[0].getWidth(), vineframes[1].getHeight());
-		g.drawAnimation(vine, coords[0]-vine.getWidth()/2, coords[1]);
+		//g.drawImage(vineframes[0], GameRunner.WIDTH/2, GameRunner.HEIGHT, coords[0]-vineframes[0].getWidth()/2, coords[1], 0, 0, vineframes[0].getWidth(), vineframes[1].getHeight());
+		//g.drawAnimation(vine, coords[0]-vine.getWidth()/2, coords[1]);
 
 		if (isEating) g.drawAnimation(eat, rectSrcCoordX, rectSrcCoordY);
 		else{

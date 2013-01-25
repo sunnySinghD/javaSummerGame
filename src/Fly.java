@@ -1,7 +1,12 @@
 import java.util.Random;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Circle;
+
+import sun.swing.MenuItemLayoutHelper.RectSize;
 
 
 public class Fly extends CollisionObject{
@@ -13,6 +18,7 @@ public class Fly extends CollisionObject{
 	boolean isDead = false;
 	static final int flyRadius = 4;
 	float speed = 0.5f;
+	Animation fAni = null;
 	
 	public Fly(){
 		super();
@@ -23,6 +29,23 @@ public class Fly extends CollisionObject{
 		setDestCoords(100f,100f);
 		isMoving = true;
 		counterMax = 10;
+		Image[] frames = new Image[7];
+		try {
+			frames[0]= new Image("fly1.png");
+		
+		frames[1]= new Image("fly2.png");
+		frames[2]= new Image("fly3.png");
+		frames[3]= new Image("fly4.png");
+		frames[4]= new Image("fly3.png");
+		frames[5]= new Image("fly2.png");
+		frames[6]= new Image("fly1.png");
+		
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		fAni = new Animation(frames, 10);
 	}
 	
 	public Fly(float x, float y){
@@ -34,6 +57,23 @@ public class Fly extends CollisionObject{
 		setDestCoords(x,y);
 		isMoving = true;
 		counterMax = 5;
+		Image[] frames = new Image[7];
+		try {
+			frames[0]= new Image("fly1.png");
+		
+		frames[1]= new Image("fly2.png");
+		frames[2]= new Image("fly3.png");
+		frames[3]= new Image("fly4.png");
+		frames[4]= new Image("fly3.png");
+		frames[5]= new Image("fly2.png");
+		frames[6]= new Image("fly1.png");
+		
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		fAni = new Animation(frames, 50);
 	}
 	
 	public Fly(float x1, float y1, float x2, float y2){
@@ -46,6 +86,23 @@ public class Fly extends CollisionObject{
 		center = coords;
 		isMoving = true;
 		counterMax = 5;		
+		Image[] frames = new Image[7];
+		try {
+			frames[0]= new Image("fly1.png");
+		
+		frames[1]= new Image("fly2.png");
+		frames[2]= new Image("fly3.png");
+		frames[3]= new Image("fly4.png");
+		frames[4]= new Image("fly3.png");
+		frames[5]= new Image("fly2.png");
+		frames[6]= new Image("fly1.png");
+		
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		fAni = new Animation(frames, 50);
 	}
 	public void setCoords(float x, float y){
 		coords[0] = x;
@@ -153,8 +210,11 @@ public class Fly extends CollisionObject{
 	}
 	
 	public void render(Graphics g){
-		if (!isDead)
-			super.render(g);
+		if (!isDead){
+			g.drawAnimation(fAni, center[0], center[1]);
+		}
+		//if (!isDead)
+			//super.render(g);
 	}
 
 }
